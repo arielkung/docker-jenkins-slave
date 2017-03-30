@@ -6,6 +6,10 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
   && chmod +x kubectl \
   && mv kubectl /usr/local/bin/kubectl
 
-RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+RUN curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.2.3-linux-amd64.tar.gz \
+ && tar -xf helm-v2.2.3-linux-amd64.tar.gz
+ && mv linux-amd64/helm /usr/local/bin/helm
+ && chmod +x /usr/local/bin/helm
+ && rm -fr linux-amd64
 
 USER jenkins
